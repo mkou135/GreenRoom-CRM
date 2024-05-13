@@ -5,14 +5,14 @@ import Settings from "./pages/Settings";
 import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 // import { LeftSideBar } from "./components/app/LeftSideBar";
-import { ComplexNavbar} from "./components/app/ComplexNavbar";
+import { ComplexNavbar } from "./components/app/ComplexNavbar";
 
 function App() {
   return (
     <div>
-      <BrowserRouter>
       <ComplexNavbar />
       {/* <LeftSideBar /> */}
+      <BrowserRouter>
         <Routes>
           <Route path="/home" element={<Home />} />
           <Route path="/events" element={<Events />} />
