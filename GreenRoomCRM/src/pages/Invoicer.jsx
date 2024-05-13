@@ -6,7 +6,7 @@ import Footer from "../components/invoicer/Footer";
 import InvoiceNumber from "../components/invoicer/InvoiceNumber";
 import ClientDetails from "../components/invoicer/ClientDetails";
 import "./Invoicer.css";
-import InvoicerButtons from "../components/invoicer/InvoicerButtons";
+import InvoicerButtons2 from "../components/invoicer/InvoicerButtons2";
 
 const Invoicer = () => {
   return (
@@ -14,7 +14,7 @@ const Invoicer = () => {
       <main className="p-5 w-4/5 m-auto border shadow-xl">
         <div className="flex justify-between">
           <Header />
-          <InvoicerButtons />
+          <InvoicerButtons2 />
         </div>
         <div className="flex justify-between">
           <div className="w-1/2">

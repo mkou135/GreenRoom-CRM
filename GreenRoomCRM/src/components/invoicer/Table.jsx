@@ -90,7 +90,7 @@ const Table = () => {
         <tr>
           <td colSpan="4" className="text-left py-2">
             <button
-              className="border border-green-500 hover:bg-teal-400 hover:text-white text-sm text-teal-500 hover:bg-green-800 hover:opacity-500 font-bold px-4 py-2 rounded"
+              className="border border-green-500 hover:bg-teal-400 hover:text-white text-sm text-teal-500 hover:opacity-500 font-bold px-4 py-2 rounded"
               onClick={handleAddRow}
             >
               + Add Line

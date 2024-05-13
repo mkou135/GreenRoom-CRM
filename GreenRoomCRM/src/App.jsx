@@ -1,16 +1,18 @@
 import Invoicer from "./pages/Invoicer";
 import Home from "./pages/Home";
-import Events from "./Events";
+import Events from "./pages/Events";
 import Settings from "./pages/Settings";
 import "./App.css";
-import TopNavBar from "./components/app/TopNavBar";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+// import { LeftSideBar } from "./components/app/LeftSideBar";
+import { ComplexNavbar} from "./components/app/ComplexNavbar";
 
 function App() {
   return (
     <div>
       <BrowserRouter>
-        <TopNavBar />
+      <ComplexNavbar />
+      {/* <LeftSideBar /> */}
         <Routes>
           <Route path="/home" element={<Home />} />
           <Route path="/events" element={<Events />} />
