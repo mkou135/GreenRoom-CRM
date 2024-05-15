@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React from "react";
 import {
   Navbar,
@@ -26,26 +27,26 @@ const navListItems = [
     icon: HomeIcon,
     href: "/home",
   },
-  {
-    label: "Clients",
-    icon: UserCircleIcon,
-    href: "/events",
-  },
-  {
-    label: "Leads",
-    icon: InboxStackIcon,
-    href: "/events",
-  },
+  // {
+  //   label: "Clients",
+  //   icon: UserCircleIcon,
+  //   href: "/events",
+  // },
+  // {
+  //   label: "Leads",
+  //   icon: InboxStackIcon,
+  //   href: "/events",
+  // },
   {
     label: "Events",
     icon: MusicalNoteIcon,
     href: "/events",
   },
-  {
-    label: "Calendar",
-    icon: CalendarDaysIcon,
-    href: "/events",
-  },
+  // {
+  //   label: "Calendar",
+  //   icon: CalendarDaysIcon,
+  //   href: "/events",
+  // },
   {
     label: "Invoicer",
     icon: NewspaperIcon,
@@ -96,7 +97,7 @@ export function ComplexNavbar() {
   }, []);
 
   return (
-    <Navbar  fullWidth="true" className="mx-auto max-w-screen-xl p-2 lg:rounded-lg lg:pl-6">
+    <Navbar  className="mx-auto max-w-screen-xl p-2 lg:rounded-lg lg:pl-6">
       <div className="relative mx-auto flex items-center justify-between text-blue-gray-900">
         <Typography
           as="a"

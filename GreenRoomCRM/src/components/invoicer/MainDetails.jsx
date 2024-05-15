@@ -1,5 +1,25 @@
-// eslint-disable-next-line react/prop-types
-export default function MainDetails({ name }) {
+import { useEffect, useState } from "react";
+import pb from "../../pocketbaseClient";
+
+export default function MainDetails() {
+  const [name, setName] = useState("");
+
+  useEffect(() => {
+    fetchUserName();
+  }, []);
+
+  const fetchUserName = async () => {
+    try {
+      const records = await pb.collection("user_data").getFullList();
+      if (records.length > 0) {
+        const userData = records[0];
+        setName(userData.name);
+      }
+    } catch (error) {
+      console.error("Error fetching user name:", error);
+    }
+  };
+
   return (
     <div>
       <section className="flex flex-col items-end justify-end mt-2">
