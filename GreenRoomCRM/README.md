@@ -1,8 +1,14 @@
-# React + Vite
+GreenRoom CRM is a webapp written in React with PocketBase designed to automate some of the processes involved in being a sole trader in the wedding / corporate entertainment industry.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Features include:
 
-Currently, two official plugins are available:
+- Integration with Google Calendar
+- Automated invoice generation
+- Automated text templates
+- Gig Analytics
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Future features
+
+- Automate sending quotes and contracts
+- Handle Payments
+- Customiseable Workflow Automation

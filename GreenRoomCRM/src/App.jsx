@@ -9,7 +9,7 @@ import { ComplexNavbar } from "./components/app/ComplexNavbar";
 
 function App() {
   return (
-    <div>
+    <main>
       <ComplexNavbar />
       {/* <LeftSideBar /> */}
       <BrowserRouter>
@@ -20,7 +20,7 @@ function App() {
           <Route path="/settings" element={<Settings />} />
         </Routes>
       </BrowserRouter>
-    </div>
+    </main>
   );
 }
 
