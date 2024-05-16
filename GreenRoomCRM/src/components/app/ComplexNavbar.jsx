@@ -117,7 +117,7 @@ export function ComplexNavbar({ onLogout }) {
   };
 
   return (
-    <Navbar className="mx-auto max-w-screen-xl p-2 lg:rounded-lg lg:pl-6">
+    <Navbar fullWidth className="mb-5 p-2 lg:rounded-lg lg:pl-6">
       <div className="relative mx-auto flex items-center justify-between text-blue-gray-900">
         <Typography
           as="a"

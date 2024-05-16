@@ -1,18 +1,15 @@
-import { SimpleCard } from "../components/home/Piechart";
-
-
+import { Card } from "@material-tailwind/react";
+import DbChart from "../components/home/DbChart";
+import { TodoList } from "../components/home/Todo";
 export default function Home() {
   return (
-    <>
-    <div className="flex flex-row justify-around mb-10">
-  <SimpleCard/>
-  <SimpleCard/>
-  </div>
-    <div className="flex flex-row justify-around mt-10">
-  <SimpleCard/>
-  <SimpleCard/>
-  </div>
-
-    </>
+    <div className="mt-5 flex justify-around">
+      <Card>
+        <TodoList />
+      </Card>
+      <Card>
+        <DbChart />
+      </Card>
+    </div>
   );
 }

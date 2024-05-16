@@ -57,84 +57,92 @@ export function AddEvent() {
 
   return (
     <>
-      <Button onClick={handleOpen} className="mt-5">New Event</Button>
+      <Button onClick={handleOpen} className="mt-5">
+        New Event
+      </Button>
       <Dialog
         size="xs"
         open={open}
         handler={handleOpen}
         className="bg-transparent shadow-none"
       >
-        <Card className="mx-auto w-full max-w-[24rem]">
+        <Card className="mx-auto w-full max-w-[36rem]">
           <CardBody className="flex flex-col gap-4">
             <Typography variant="h4" color="blue-gray">
               New Event
             </Typography>
-            <Typography className="-mb-2" variant="h6">
-              Event Date
-            </Typography>
-            <DatePicker
-              selected={eventDate}
-              onChange={(date) => setEventDate(date)}
-              dateFormat="yyyy-MM-dd"
-              className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-            />
-            <Typography className="-mb-2" variant="h6">
-              Booking Name
-            </Typography>
-            <Input
-              label=""
-              size="lg"
-              value={bookingName}
-              onChange={(e) => setBookingName(e.target.value)}
-            />
-            <Typography className="-mb-2" variant="h6">
-              Event Type
-            </Typography>
-            <Select
-              label="Select Event Type"
-              value={eventType}
-              onChange={(value) => setEventType(value)}
-            >
-              <Option value="Wedding">Wedding</Option>
-              <Option value="Corporate">Corporate</Option>
-              <Option value="Birthday">Birthday</Option>
-              <Option value="Other">Other</Option>
-            </Select>
-            <Typography className="-mb-2" variant="h6">
-              Venue
-            </Typography>
-            <Input
-              label=""
-              size="lg"
-              value={venue}
-              onChange={(e) => setVenue(e.target.value)}
-            />
-            <Typography className="-mb-2" variant="h6">
-              Start Time
-            </Typography>
-            <DatePicker
-              selected={startTime}
-              onChange={(date) => setStartTime(date)}
-              showTimeSelect
-              showTimeSelectOnly
-              timeIntervals={15}
-              timeCaption="Time"
-              dateFormat="h:mm aa"
-              className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-            />
-            <Typography className="-mb-2" variant="h6">
-              End Time
-            </Typography>
-            <DatePicker
-              selected={endTime}
-              onChange={(date) => setEndTime(date)}
-              showTimeSelect
-              showTimeSelectOnly
-              timeIntervals={15}
-              timeCaption="Time"
-              dateFormat="h:mm aa"
-              className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-            />
+            <div className="flex justify-between">
+              <div>
+              <Typography className="mb-2" variant="h6">
+                Event Date
+              </Typography>
+              <DatePicker
+                selected={eventDate}
+                onChange={(date) => setEventDate(date)}
+                dateFormat="yyyy-MM-dd"
+                className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              />
+              <Typography className="my-2" variant="h6">
+                Booking Name
+              </Typography>
+              <Input
+                label=""
+                size="lg"
+                value={bookingName}
+                onChange={(e) => setBookingName(e.target.value)}
+              />
+              <Typography className="my-2" variant="h6">
+                Event Type
+              </Typography>
+              <Select
+                label="Select Event Type"
+                value={eventType}
+                onChange={(value) => setEventType(value)}
+              >
+                <Option value="Wedding">Wedding</Option>
+                <Option value="Corporate">Corporate</Option>
+                <Option value="Birthday">Birthday</Option>
+                <Option value="Other">Other</Option>
+              </Select>
+              </div>
+              <div>
+              <Typography className="mb-2" variant="h6">
+                Venue
+              </Typography>
+              <Input
+                label=""
+                size="lg"
+                value={venue}
+                onChange={(e) => setVenue(e.target.value)}
+              />
+              <Typography className="my-2" variant="h6">
+                Start Time
+              </Typography>
+              <DatePicker
+                selected={startTime}
+                onChange={(date) => setStartTime(date)}
+                showTimeSelect
+                showTimeSelectOnly
+                timeIntervals={15}
+                timeCaption="Time"
+                dateFormat="h:mm aa"
+                className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              />
+              <Typography className="my-2" variant="h6">
+                End Time
+              </Typography>
+              <DatePicker
+                selected={endTime}
+                onChange={(date) => setEndTime(date)}
+                showTimeSelect
+                showTimeSelectOnly
+                timeIntervals={15}
+                timeCaption="Time"
+                dateFormat="h:mm aa"
+                className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              />
+              </div>
+            </div>
           </CardBody>
           <CardFooter className="pt-0">
             <Button
