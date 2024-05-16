@@ -1,15 +1,18 @@
 import { useEffect, useState } from "react";
 import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
+import listPlugin from "@fullcalendar/list";
 import pb from "../../pocketbaseClient";
+import { BookingModal } from "./BookingModal";
 
 export function EventCalendar() {
   const [events, setEvents] = useState([]);
+  const [selectedBooking, setSelectedBooking] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     fetchEvents();
   }, []);
-
   const fetchEvents = async () => {
     try {
       const records = await pb.collection("events").getFullList();
@@ -52,34 +55,55 @@ export function EventCalendar() {
     return eventData;
   };
 
-  const renderEventContent = (eventInfo) => {
-    return (
-      <>
+  // const renderEventContent = (eventInfo) => {
+  //   return (
+  //     <>
+  //       <div>{eventInfo.timeText}</div>
+  //       <div className="fc-event-title">{eventInfo.event.title}</div>
+  //       <div>{eventInfo.event.extendedProps.eventType}</div>
+  //       <div>{eventInfo.event.extendedProps.venue}</div>
+  //       <div>
+  //         {eventInfo.event.extendedProps.startTime} -{" "}
+  //         {eventInfo.event.extendedProps.endTime}
+  //       </div>
+  //     </>
+  //   );
+  // };
 
-          <div>{eventInfo.timeText}</div>
-          <div className="fc-event-title">{eventInfo.event.title}</div>
-        <div>{eventInfo.event.extendedProps.eventType}</div>
-        <div>{eventInfo.event.extendedProps.venue}</div>
-        <div>
-          {eventInfo.event.extendedProps.startTime} -{" "}
-          {eventInfo.event.extendedProps.endTime}
-        </div>
-      </>
-    );
+  const handleEventClick = (info) => {
+    setSelectedBooking(info.event);
+    setIsModalOpen(true);
   };
 
+  const handleCloseModal = () => {
+    setSelectedBooking(null);
+    setIsModalOpen(false);
+  };
   return (
     <div className="my-5">
       <h1 className="text-xl">Event Calendar</h1>
       <FullCalendar
-        plugins={[dayGridPlugin]}
+        plugins={[dayGridPlugin, listPlugin]}
         initialView="dayGridMonth"
         weekends={true}
         events={events}
         eventDataTransform={eventDataTransform}
-        eventContent={renderEventContent}
+        eventContent={(info) => <div>{info.event.title}</div>}
         height={600}
+        headerToolbar={{
+          left: "prev,next today",
+          center: "title",
+          right: "dayGridMonth,listWeek",
+        }}
+        eventClick={handleEventClick}
       />
+      {selectedBooking && (
+        <BookingModal
+          open={isModalOpen}
+          onClose={handleCloseModal}
+          booking={selectedBooking}
+        />
+      )}
     </div>
   );
 }

@@ -1,11 +1,12 @@
 /* eslint-disable no-unused-vars */
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   Navbar,
   MobileNav,
   Typography,
   MenuItem,
   IconButton,
+  Button,
 } from "@material-tailwind/react";
 import {
   Cog6ToothIcon,
@@ -15,10 +16,10 @@ import {
   NewspaperIcon,
   HomeIcon,
   InboxStackIcon,
-  MusicalNoteIcon
+  MusicalNoteIcon,
+  ArrowRightOnRectangleIcon,
 } from "@heroicons/react/24/solid";
-
-
+import pb from "../../pocketbaseClient";
 
 // nav list component
 const navListItems = [
@@ -57,14 +58,11 @@ const navListItems = [
     icon: Cog6ToothIcon,
     href: "/settings",
   },
-
-
 ];
 
 function NavList() {
   return (
     <ul className="mt-2 mb-4 flex flex-col gap-2 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center">
-
       {navListItems.map(({ label, icon, href }) => (
         <Typography
           key={label}
@@ -84,20 +82,42 @@ function NavList() {
   );
 }
 
-export function ComplexNavbar() {
+// eslint-disable-next-line react/prop-types
+export function ComplexNavbar({ onLogout }) {
   const [isNavOpen, setIsNavOpen] = React.useState(false);
+  const [username, setUsername] = useState("");
 
   const toggleIsNavOpen = () => setIsNavOpen((cur) => !cur);
 
-  React.useEffect(() => {
+  useEffect(() => {
     window.addEventListener(
       "resize",
       () => window.innerWidth >= 960 && setIsNavOpen(false)
     );
+
+    // Fetch the currently logged-in user's data
+    const fetchUserData = async () => {
+      try {
+        const userId = pb.authStore.model?.id;
+        if (userId) {
+          const user = await pb.collection("users").getOne(userId);
+          setUsername(user.username);
+        }
+      } catch (error) {
+        console.error("Error fetching user data:", error);
+      }
+    };
+
+    fetchUserData();
   }, []);
 
+  const handleSignOut = () => {
+    pb.authStore.clear();
+    onLogout();
+  };
+
   return (
-    <Navbar  className="mx-auto max-w-screen-xl p-2 lg:rounded-lg lg:pl-6">
+    <Navbar className="mx-auto max-w-screen-xl p-2 lg:rounded-lg lg:pl-6">
       <div className="relative mx-auto flex items-center justify-between text-blue-gray-900">
         <Typography
           as="a"
@@ -109,20 +129,29 @@ export function ComplexNavbar() {
         <div className="hidden lg:block">
           <NavList />
         </div>
-        <IconButton
-          size="sm"
-          color="blue-gray"
-          variant="text"
-          onClick={toggleIsNavOpen}
-          className="ml-auto mr-2 lg:hidden"
-        >
-          <Bars2Icon className="h-6 w-6" />
-        </IconButton>
-
-        {/* <Button size="sm" variant="text">
-          <span>Log In</span>
-        </Button> */}
-
+        <div className="ml-auto mr-2 flex items-center">
+          <Typography variant="small" className="mr-4">
+          Hello, {username.charAt(0).toUpperCase() + username.slice(1)}!
+          </Typography>
+          <Button
+            variant="text"
+            color="blue-gray"
+            className="flex items-center gap-2"
+            onClick={handleSignOut}
+          >
+            <ArrowRightOnRectangleIcon className="h-5 w-5" />
+            Sign Out
+          </Button>
+          <IconButton
+            size="sm"
+            color="blue-gray"
+            variant="text"
+            onClick={toggleIsNavOpen}
+            className="lg:hidden"
+          >
+            <Bars2Icon className="h-6 w-6" />
+          </IconButton>
+        </div>
       </div>
       <MobileNav open={isNavOpen} className="overflow-scroll">
         <NavList />

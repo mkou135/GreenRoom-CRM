@@ -27,6 +27,12 @@ export function AddEvent() {
 
   const handleUpdate = async () => {
     try {
+      const userId = pb.authStore.model?.id; // Get the ID of the currently logged-in user
+      if (!userId) {
+        console.error("User not logged in");
+        return;
+      }
+
       const data = {
         event_date: eventDate ? eventDate.toISOString().split("T")[0] : "",
         booking_name: bookingName,
@@ -34,6 +40,7 @@ export function AddEvent() {
         venue: venue,
         start_time: startTime ? startTime.toISOString() : "",
         end_time: endTime ? endTime.toISOString() : "",
+        user: userId, // Add the user ID to associate the event with the user
       };
       const record = await pb.collection("events").create(data);
       console.log("Event details added successfully:", record);
@@ -50,7 +57,7 @@ export function AddEvent() {
 
   return (
     <>
-      <Button onClick={handleOpen}>New Event</Button>
+      <Button onClick={handleOpen} className="mt-5">New Event</Button>
       <Dialog
         size="xs"
         open={open}
